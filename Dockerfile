@@ -9,3 +9,5 @@ COPY . /app
 
 # Run the application
 CMD ["python", "server.py"]
+
+EXPOSE 8080
