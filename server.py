@@ -1,22 +1,37 @@
-import socket
+import requests, time; from threading import Thread
 
-# Create a TCP socket
-server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+def update_msgs():
+    chc=get_messages()
+    if chc: print('\033c'+'\n'.join(chc))
+    else: print("\033c---No messages have been sent yet---")
+    while True:
+        time.sleep(2)
+        msgs=get_messages()
+        if chc==msgs: continue
+        print('\033c'+'\n'.join(msgs))
+        print(f'\n\033[F{user}: ',end='')
+        chc=msgs[:]
 
-# Confirm socket creation and bind it to the port
-try:
-    server_socket.bind(('0.0.0.0', 8080))
-    print("Socket binded to 0.0.0.0 on port 8080")
-except socket.error as msg:
-    print(f"Bind failed. Error Code : {str(msg[0])} Message {msg[1]}")
-    sys.exit()
+# Server URL (replace with your Gitpod URL)
+server_url = 'https://5000-breathecode-pythonflask-urt11axljb1.ws-us115.gitpod.io'
+user=input("\033cPlease enter your username for this application: ")
 
-server_socket.listen(5)
-print("Socket is now listening")
+def send_message(username, message):
+    try:
+        response = requests.post(f"{server_url}/send-message", json={'username': username, 'message': message})
+        if response.status_code!=200: raise Exception(f"An error has occurred: {response}")
+    except requests.exceptions.RequestException:
+        print('The server is not currently running.');exit()
 
-# Main loop to accept connections
+def get_messages():
+    try:
+        m=requests.get(f"{server_url}/get-messages").json()['messages']
+        return [f'{v["username"]}: {v["message"]}' for v in m]
+    except requests.exceptions.RequestException:
+        print('The server is not currently running.');exit()
+
+# Example usage
+Thread(target=update_msgs,daemon=True).start()
+time.sleep(0.5)
 while True:
-    client_socket, addr = server_socket.accept()
-    print(f"Connection from {addr}")
-    client_socket.send(b'Hello, World!')
-    client_socket.close()
+    send_message(user, input(f'{user}: '))
