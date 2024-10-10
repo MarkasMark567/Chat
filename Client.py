@@ -5,7 +5,7 @@
 
 # The dependencies for this program will automatically install if you do not have them on your hosting service.
 
-# PLEASE DO NOT TAMPER WITH THE CODE IN THIS FILE! This will break things and it will not function proper;y.
+# PLEASE DO NOT TAMPER WITH THE CODE IN THIS FILE! This will break things and it will not function properly.
 #      This code is only meant to connect to a server, recieve data, and execute commands.
 #      This source-code file is obfuscated (hidden) only to protect sensitive info, like IP addresses and keys.
 
